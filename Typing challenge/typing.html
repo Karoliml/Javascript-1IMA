@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Typing game</title>
+</head>
+<body>
+    <!--Overskrift-->
+    <header>
+        <h1>CYBERNINJA</h1>
+        <p>The keyboard master</p>
+    </header>
+    <main>
+        <!--Spill området-->
+        <section>
+            <h2>Klarer du å slå Cyberninja?</h2>
+            <article>
+                <p>Skriv sitatet så fort du kan og se om du er en ekte keyboard ninja</p>
+                <p id="sitat"></p>
+                <p id="status"></p>
+                <!--Hvor vi skriver inn teksten-->
+                <div>
+                    <input type="text" aria-label="current word" id="tekst" oninput="sjekkTekst()"/>
+                    <button type="button" id="start-knapp" onclick="startSpill()">START</button>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>Sist oppdatert 04.03.25</p>
+        <p>Credit til <a href="https://medium.com/geekculture/create-a-game-with-javascript-in-5-minutes-35f69c3b66e3">Anthony Mwaura</a></p>
+    </footer>
+
+    <script>
+        //Her lager vi spillet vårt
+
+        //Noen av start variablene våres
+        let ord = [];
+        let ordIndex = 0;
+        let startTime;
+        //Her lager vi html elementene våres om til variabler slik at vi kan bruke de i javascripten
+        const sitatElement = document.getElementById("sitat");
+        const statusElement = document.getElementById("status");
+        const tekstElement = document.getElementById("tekst");
+
+        //Sitatene våres
+        const sitater = [
+                `It's no use going back to yesterday, because I was a different person then.`,
+                `Who in the world am I? Ah, that's the great puzzle.`,
+                `"And what is the use of a book," thought Alice, "without pictures or conversations?"`,
+                `"Would you tell me, please, which way I ought to go from here?" "That depends a good deal on where you want to get to." "I don't much care where" "Then it doesn't matter which way you go"`,
+                `Why, sometimes I've believed as many as six impossible things before breakfast`,
+                `Now, here, you see, it takes all the running you can do, to keep in the same place. If you want to get somewhere else, you must run at least twice as fast as that!`
+            ];
+        
+        //Funksjon for å starte spillet
+        
+            //Her er koden for å velge et random sitat, samt deler opp dette sitatet til enkelte ord
+         
+            //Her beveger vi oss gjennom ord variabelen for å kunne legge på en highlight på det valgte ordet
+            
+
+       
+            //Spesifiserer hva det nåværende ordet vår skal være
+            
+
+            //Lager en betingelse for å si hva som skal skje hvis:
+                /*
+                1. Input ordet vårt matcher det nåværende ordet, samt at ordindexen matcher hvilket ord vi er på
+                2. Hva som skal skje hvis input ordet våres matcher det nåværende ordet og input ordet våres har et mellomrom på slutten
+                3. Hvis nåværende ord begynner med input ordet
+                4. Hva som skjer hvis ingen av de tidligere betingelsene er riktig
+                */
+           
+    </script>
+</body>
+</html>
