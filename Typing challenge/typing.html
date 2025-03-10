@@ -55,25 +55,54 @@
                 `Now, here, you see, it takes all the running you can do, to keep in the same place. If you want to get somewhere else, you must run at least twice as fast as that!`
             ];
         
-        //Funksjon for å starte spillet
-        
+      //Funksjon for å starte spillet
+        function startSpill(){
             //Her er koden for å velge et random sitat, samt deler opp dette sitatet til enkelte ord
-         
-            //Her beveger vi oss gjennom ord variabelen for å kunne legge på en highlight på det valgte ordet
-            
+            const sitatIndex = Math.floor(Math.random() * sitater.length);
+            const sitat = sitater[sitatIndex];
+            ord = sitat.split(' ')
+            ordIndex = 0
 
-       
+            //Her beveger vi oss gjennom ord variabelen for å kunne legge på en highlight på det valgte ordet
+            sitatElement.innerHTML = ord.map(word => `<span>${word}</span>`).join(' ');
+            sitatElement.children[0].classList.add('highlight')
+
+            statusElement.innerHTML = '';
+            tekstElement.value = '';
+            tekstElement.focus();
+            startTime = new Date().getTime();
+        }
+
+        //Start tekst sjekk
+        function sjekkTekst (){
             //Spesifiserer hva det nåværende ordet vår skal være
-            
+            const nåværendeOrd = ord[ordIndex];
+            const inputOrd = tekstElement.value.trim();
 
             //Lager en betingelse for å si hva som skal skje hvis:
-                /*
-                1. Input ordet vårt matcher det nåværende ordet, samt at ordindexen matcher hvilket ord vi er på
-                2. Hva som skal skje hvis input ordet våres matcher det nåværende ordet og input ordet våres har et mellomrom på slutten
-                3. Hvis nåværende ord begynner med input ordet
-                4. Hva som skjer hvis ingen av de tidligere betingelsene er riktig
-                */
-           
+            /*
+            1. Hvis inputord er riktig og er det siste ordet i sitatet
+            2. Hva som skal skje hvis input ordet våres matcher det nåværende ordet og input ordet våres har et mellomrom på slutten
+            3. Hvis nåværende ord begynner med input ordet
+            4. Hva som skjer hvis ingen av de tidligere betingelsene er riktig
+            */
+            if(inputOrd === nåværendeOrd && ordIndex === ord.length -1) {
+                const pågåendeTid = (new Date().getTime() - startTime) / 1000;
+                statusElement.innerHTML = `Gratulerer, du fullførte sitatet på ${pågåendeTid} sekunder!`;
+                tekstElement.value = '';
+            } else if (inputOrd === nåværendeOrd && tekstElement.value.endsWith(" ")) {
+                tekstElement.value = '';
+                ordIndex++
+                Array.from(sitatElement.children).forEach(el => el.classList.remove('highlight'));
+                if(sitatElement.children[ordIndex]) {
+                    sitatElement.children[ordIndex].classList.add('highlight');
+                }
+            } else if (nåværendeOrd.startsWith(inputOrd)) {
+                tekstElement.classList.remove('error');
+            } else {
+                tekstElement.classList.add('error')
+            }
+        }
     </script>
 </body>
 </html>
